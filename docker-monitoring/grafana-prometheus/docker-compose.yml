@@ -11,8 +11,6 @@ services:
     command:
       -  '--config.file=/etc/prometheus/prometheus.yml'
       -  '--storage.tsdb.retention.time=7d'
-    ports:
-      -  9090:9090
     depends_on: 
       -  cadvisor
       -  node-exporter
@@ -22,8 +20,6 @@ services:
     image: prom/node-exporter:v1.3.0
     container_name: node_exporter_monitoring
     restart: unless-stopped
-    ports:
-      -  9100:9100
     networks:
       -  docker-monitoring
   
@@ -36,8 +32,6 @@ services:
       -  /var/run:/var/run:rw
       -  /sys:/sys:ro
       -  /var/lib/docker/:/var/lib/docker:ro
-    ports:
-      -  8080:8080
     networks:
       -  docker-monitoring
   
